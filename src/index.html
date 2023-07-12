@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Task List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Task List</title>
 </head>
 <body>
-    <h1>Hello webpack!</h1>
+  <main class="flex-wrap">
+    <h1>Today's To Do <img src="<%= require('./reload.png') %>" class="h1-reload"></h1>
+    <form id="newtask">
+      <input type="text" name="addnew" id="addnew" placeholder="Add to your list..."> <img src="<%= require('./return.png') %>" class="newtask-return">
+    </form>
+    <form id="tasklist-main">
+      <div class="tasklist"></div>
+      <button class="tasklist-btn">Clear all completed</button>
+    </form>
+  </main>
 </body>
 </html>
