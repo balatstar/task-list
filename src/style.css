@@ -68,7 +68,7 @@ main {
   position: relative;
 }
 
-.task-group  > * {
+.task-group > * {
   margin: 0 5px;
 }
 
