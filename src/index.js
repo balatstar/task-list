@@ -16,6 +16,16 @@ const postContainer = document.querySelector('.tasklist');
 const addButton = document.querySelector('.newtask-return');
 const items = getItems();
 
+function updateItem(index, key, value) {
+  items[index][key] = value;
+  setItems(items);
+}
+
+function deleteItem(index) {
+  items.splice(index, 1);
+  setItems(items);
+}
+
 function refreshList() {
   postContainer.innerHTML = '';
 
@@ -25,34 +35,7 @@ function refreshList() {
   });
 }
 
-function addItem() {
-  const addNewInput = document.getElementById('addnew');
-  const description = addNewInput.value;
-
-  items.push({
-    description,
-    completed: false,
-  });
-
-  setItems(items);
-  refreshList();
-
-  addNewInput.value = ''; // Clear the input field after adding the item
-}
-
-function updateItem(item, key, value) {
-  item[key] = value;
-  setItems(items);
-  refreshList();
-}
-
-function deleteItem(index) {
-  items.splice(index, 1);
-  setItems(items);
-  refreshList();
-}
-
-function createItemElement(item, index) {
+const createItemElement = (item, index) => {
   const itemElement = document.createElement('div');
   itemElement.classList.add('task-group');
   itemElement.innerHTML = `
@@ -78,18 +61,38 @@ function createItemElement(item, index) {
   completedInput.checked = item.completed;
 
   descriptionInput.addEventListener('change', () => {
-    updateItem(item, 'description', descriptionInput.value);
+    const newValue = descriptionInput.value;
+    item.description = newValue;
+    updateItem(index, 'description', newValue);
   });
 
   completedInput.addEventListener('change', () => {
-    updateItem(item, 'completed', completedInput.checked);
+    const newValue = completedInput.checked;
+    item.completed = newValue;
+    updateItem(index, 'completed', newValue);
   });
 
   deleteButton.addEventListener('click', () => {
     deleteItem(index);
+    refreshList();
   });
 
   return itemElement;
+};
+
+function addItem() {
+  const addNewInput = document.getElementById('addnew');
+  const description = addNewInput.value;
+
+  items.push({
+    description,
+    completed: false,
+  });
+
+  setItems(items);
+  refreshList();
+
+  addNewInput.value = ''; // Clear the input field after adding the item
 }
 
 addButton.addEventListener('click', () => {

@@ -64,6 +64,7 @@ main {
   color: #333;
   font-style: normal;
   border: none;
+  width: 90%;
 }
 
 #addnew::placeholder {
@@ -79,6 +80,10 @@ main {
 
 .task-group > * {
   margin: 0 5px;
+}
+
+.task-item-text {
+  width: 90%;
 }
 
 .task-item-text,
