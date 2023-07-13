@@ -12,10 +12,6 @@ function setItems(items) {
   localStorage.setItem('tasks', itemsJson);
 }
 
-let postContainer = document.querySelector('.tasklist');
-const addButton = document.querySelector('.newtask-return');
-let items = getItems();
-
 function refreshList() {
   postContainer.innerHTML = '';
 
@@ -87,17 +83,24 @@ function deleteItem(index) {
   refreshList();
 }
 
-addButton.addEventListener('click', () => {
-  addItem();
-});
-
+const postContainer = document.querySelector('.tasklist');
+const addButton = document.querySelector('.newtask-return');
+const items = getItems();
 const addNewInput = document.getElementById('addnew');
 
-addNewInput.addEventListener('keydown', (event) => {
+function handleAddButtonClick() {
+  addItem();
+}
+
+function handleAddNewInputKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault(); // Prevent the default form submission behavior
     addItem();
   }
-});
+}
+
+addButton.addEventListener('click', handleAddButtonClick);
+
+addNewInput.addEventListener('keydown', handleAddNewInputKeyDown);
 
 refreshList();
