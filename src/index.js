@@ -2,6 +2,12 @@ import './style.css';
 import More from './more.png';
 import Delete from './delete.png';
 
+const postContainer = document.querySelector('.tasklist');
+const addButton = document.querySelector('.newtask-return');
+const addNewInput = document.getElementById('addnew');
+
+let items;
+
 function getItems() {
   const value = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
   return value;
@@ -83,10 +89,7 @@ function deleteItem(index) {
   refreshList();
 }
 
-const postContainer = document.querySelector('.tasklist');
-const addButton = document.querySelector('.newtask-return');
-const items = getItems();
-const addNewInput = document.getElementById('addnew');
+items = getItems();
 
 function handleAddButtonClick() {
   addItem();
@@ -100,7 +103,6 @@ function handleAddNewInputKeyDown(event) {
 }
 
 addButton.addEventListener('click', handleAddButtonClick);
-
 addNewInput.addEventListener('keydown', handleAddNewInputKeyDown);
 
 refreshList();
