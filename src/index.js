@@ -14,7 +14,7 @@ function setItems(items) {
 
 const postContainer = document.querySelector('.tasklist');
 const addButton = document.querySelector('.newtask-return');
-let items = getItems();
+const items = getItems();
 
 function updateItem(index, key, value) {
   items[index][key] = value;
