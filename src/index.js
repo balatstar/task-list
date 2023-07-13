@@ -8,17 +8,17 @@ const addNewInput = document.getElementById('addnew');
 
 let items;
 
-function getItems() {
+const getItems = () => {
   const value = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
   return value;
-}
+};
 
-function setItems(items) {
+const setItems = (items) => {
   const itemsJson = JSON.stringify(items);
   localStorage.setItem('tasks', itemsJson);
-}
+};
 
-function refreshList() {
+const refreshList = () => {
   postContainer.innerHTML = '';
 
   items.forEach((item, index) => {
@@ -60,10 +60,9 @@ function refreshList() {
 
     postContainer.appendChild(itemElement);
   });
-}
+};
 
-function addItem() {
-  const addNewInput = document.getElementById('addnew');
+const addItem = () => {
   const description = addNewInput.value;
 
   items.push({
@@ -75,32 +74,32 @@ function addItem() {
   refreshList();
 
   addNewInput.value = ''; // Clear the input field after adding the item
-}
+};
 
-function updateItem(item, key, value) {
+const updateItem = (item, key, value) => {
   item[key] = value;
   setItems(items);
   refreshList();
-}
+};
 
-function deleteItem(index) {
+const deleteItem = (index) => {
   items.splice(index, 1);
   setItems(items);
   refreshList();
-}
+};
 
 items = getItems();
 
-function handleAddButtonClick() {
+const handleAddButtonClick = () => {
   addItem();
-}
+};
 
-function handleAddNewInputKeyDown(event) {
+const handleAddNewInputKeyDown = (event) => {
   if (event.key === 'Enter') {
     event.preventDefault(); // Prevent the default form submission behavior
     addItem();
   }
-}
+};
 
 addButton.addEventListener('click', handleAddButtonClick);
 addNewInput.addEventListener('keydown', handleAddNewInputKeyDown);
