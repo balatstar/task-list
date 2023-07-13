@@ -14,7 +14,7 @@ function setItems(items) {
 
 const postContainer = document.querySelector('.tasklist');
 const addButton = document.querySelector('.newtask-return');
-const items = getItems();
+let items = getItems();
 
 function updateItem(index, key, value) {
   items[index][key] = value;
@@ -24,15 +24,7 @@ function updateItem(index, key, value) {
 function deleteItem(index) {
   items.splice(index, 1);
   setItems(items);
-}
-
-function refreshList() {
-  postContainer.innerHTML = '';
-
-  items.forEach((item, index) => {
-    const itemElement = createItemElement(item, index);
-    postContainer.appendChild(itemElement);
-  });
+  postContainer.dispatchEvent(new CustomEvent('itemDeleted'));
 }
 
 const createItemElement = (item, index) => {
@@ -64,21 +56,31 @@ const createItemElement = (item, index) => {
     const newValue = descriptionInput.value;
     item.description = newValue;
     updateItem(index, 'description', newValue);
+    itemElement.dispatchEvent(new CustomEvent('itemChanged'));
   });
 
   completedInput.addEventListener('change', () => {
     const newValue = completedInput.checked;
     item.completed = newValue;
     updateItem(index, 'completed', newValue);
+    itemElement.dispatchEvent(new CustomEvent('itemChanged'));
   });
 
   deleteButton.addEventListener('click', () => {
     deleteItem(index);
-    refreshList();
   });
 
   return itemElement;
 };
+
+function refreshList() {
+  postContainer.innerHTML = '';
+
+  items.forEach((item, index) => {
+    const itemElement = createItemElement(item, index);
+    postContainer.appendChild(itemElement);
+  });
+}
 
 function addItem() {
   const addNewInput = document.getElementById('addnew');
@@ -90,9 +92,8 @@ function addItem() {
   });
 
   setItems(items);
-  refreshList();
-
   addNewInput.value = ''; // Clear the input field after adding the item
+  postContainer.dispatchEvent(new CustomEvent('itemAdded'));
 }
 
 addButton.addEventListener('click', () => {
@@ -107,5 +108,9 @@ addNewInput.addEventListener('keydown', (event) => {
     addItem();
   }
 });
+
+postContainer.addEventListener('itemAdded', refreshList);
+postContainer.addEventListener('itemChanged', refreshList);
+postContainer.addEventListener('itemDeleted', refreshList);
 
 refreshList();
