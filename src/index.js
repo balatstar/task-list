@@ -6,31 +6,17 @@ const postContainer = document.querySelector('.tasklist');
 const addButton = document.querySelector('.newtask-return');
 const addNewInput = document.getElementById('addnew');
 
-let items;
-
-const getItems = () => {
+function getItems() {
   const value = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
   return value;
-};
+}
 
-const setItems = (items) => {
+function setItems(items) {
   const itemsJson = JSON.stringify(items);
   localStorage.setItem('tasks', itemsJson);
-};
+}
 
-const updateItem = (item, key, value) => {
-  item[key] = value;
-  setItems(items);
-  refreshList();
-};
-
-const deleteItem = (index) => {
-  items.splice(index, 1);
-  setItems(items);
-  refreshList();
-};
-
-const refreshList = () => {
+function refreshList() {
   postContainer.innerHTML = '';
 
   items.forEach((item, index) => {
@@ -72,9 +58,9 @@ const refreshList = () => {
 
     postContainer.appendChild(itemElement);
   });
-};
+}
 
-const addItem = () => {
+function addItem() {
   const description = addNewInput.value;
 
   items.push({
@@ -86,20 +72,32 @@ const addItem = () => {
   refreshList();
 
   addNewInput.value = ''; // Clear the input field after adding the item
-};
+}
 
-items = getItems();
+function updateItem(item, key, value) {
+  item[key] = value;
+  setItems(items);
+  refreshList();
+}
 
-const handleAddButtonClick = () => {
+function deleteItem(index) {
+  items.splice(index, 1);
+  setItems(items);
+  refreshList();
+}
+
+let items = getItems();
+
+function handleAddButtonClick() {
   addItem();
-};
+}
 
-const handleAddNewInputKeyDown = (event) => {
+function handleAddNewInputKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault(); // Prevent the default form submission behavior
     addItem();
   }
-};
+}
 
 addButton.addEventListener('click', handleAddButtonClick);
 addNewInput.addEventListener('keydown', handleAddNewInputKeyDown);
