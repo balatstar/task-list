@@ -18,6 +18,10 @@ h1 {
   position: relative;
 }
 
+input:focus {
+  outline: none;
+}
+
 h1,
 #addnew,
 .tasklist-btn,
@@ -56,7 +60,12 @@ main {
   padding: 0;
 }
 
-#addnew,
+#addnew {
+  color: #333;
+  font-style: normal;
+  border: none;
+}
+
 #addnew::placeholder {
   color: #bbb;
   font-style: italic;
@@ -78,17 +87,35 @@ main {
   border: none;
 }
 
+.task-item-delete {
+    display:none;
+}
+
 .task-item-more,
 .h1-reload,
-.newtask-return {
+.newtask-return,
+.task-item-delete {
   position: absolute;
   top: 15px;
   right: 15px;
   height: 16px;
 }
 
-.task-item-more {
+.task-item-more,
+.task-item-delete {
   right: 10px;
+}
+
+.task-item:checked ~ .task-item-delete {
+    display: block;
+}
+
+.task-item:checked ~ .task-item-more {
+    display: none;
+}
+
+.task-item:checked ~ .task-item-text {
+  text-decoration: line-through;
 }
 
 .tasklist-btn {
