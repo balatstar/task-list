@@ -12,9 +12,9 @@ function setItems(items) {
   localStorage.setItem('tasks', itemsJson);
 }
 
-let postContainer;
-let addButton;
-let items;
+let postContainer = document.querySelector('.tasklist');
+const addButton = document.querySelector('.newtask-return');
+let items = getItems();
 
 function refreshList() {
   postContainer.innerHTML = '';
@@ -59,10 +59,6 @@ function refreshList() {
     postContainer.appendChild(itemElement);
   });
 }
-
-postContainer = document.querySelector('.tasklist');
-addButton = document.querySelector('.newtask-return');
-items = getItems();
 
 function addItem() {
   const addNewInput = document.getElementById('addnew');
