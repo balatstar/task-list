@@ -12,10 +12,54 @@ function setItems(items) {
   localStorage.setItem('tasks', itemsJson);
 }
 
+function refreshList() {
+  postContainer.innerHTML = '';
+
+  items.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.classList.add('task-group');
+    itemElement.innerHTML = `
+      <input class="task-item" type="checkbox">
+      <input class="task-item-text" placeholder="Task item...">
+    `;
+
+    const myIcon = new Image();
+    myIcon.src = More;
+    myIcon.classList.add('task-item-more');
+    itemElement.appendChild(myIcon);
+
+    const myDelete = new Image();
+    myDelete.src = Delete;
+    myDelete.classList.add('task-item-delete');
+    itemElement.appendChild(myDelete);
+
+    const descriptionInput = itemElement.querySelector('.task-item-text');
+    const completedInput = itemElement.querySelector('.task-item');
+    const deleteButton = itemElement.querySelector('.task-item-delete');
+
+    descriptionInput.value = item.description;
+    completedInput.checked = item.completed;
+
+    descriptionInput.addEventListener('change', () => {
+      updateItem(item, 'description', descriptionInput.value);
+    });
+
+    completedInput.addEventListener('change', () => {
+      updateItem(item, 'completed', completedInput.checked);
+    });
+
+    deleteButton.addEventListener('click', () => {
+      deleteItem(index);
+    });
+
+    postContainer.appendChild(itemElement);
+  });
+}
+
 const postContainer = document.querySelector('.tasklist');
 const addButton = document.querySelector('.newtask-return');
 
-let items = getItems();
+const items = getItems();
 
 function addItem() {
   const addNewInput = document.getElementById('addnew');
@@ -44,57 +88,13 @@ function deleteItem(index) {
   refreshList();
 }
 
-function refreshList() {
-  postContainer.innerHTML = '';
-
-  items.forEach((item, index) => {
-    const itemElement = document.createElement('div');
-    itemElement.classList.add('task-group');
-    itemElement.innerHTML = `
-      <input class="task-item" type="checkbox">
-      <input class="task-item-text" placeholder="Task item...">
-    `;
-  
-    const myIcon = new Image();
-    myIcon.src = More;
-    myIcon.classList.add('task-item-more');
-    itemElement.appendChild(myIcon);
-  
-    const myDelete = new Image();
-    myDelete.src = Delete;
-    myDelete.classList.add('task-item-delete');
-    itemElement.appendChild(myDelete);
-  
-    const descriptionInput = itemElement.querySelector('.task-item-text');
-    const completedInput = itemElement.querySelector('.task-item');
-    const deleteButton = itemElement.querySelector('.task-item-delete');
-  
-    descriptionInput.value = item.description;
-    completedInput.checked = item.completed;
-  
-    descriptionInput.addEventListener('change', () => {
-      updateItem(item, 'description', descriptionInput.value);
-    });
-  
-    completedInput.addEventListener('change', () => {
-      updateItem(item, 'completed', completedInput.checked);
-    });
-  
-    deleteButton.addEventListener('click', () => {
-      deleteItem(index);
-    });
-  
-    postContainer.appendChild(itemElement);
-  });
-}
-
 addButton.addEventListener('click', () => {
   addItem();
 });
 
 const addNewInput = document.getElementById('addnew');
 
-addNewInput.addEventListener('keydown', function (event) {
+addNewInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     event.preventDefault(); // Prevent the default form submission behavior
     addItem();
