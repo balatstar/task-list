@@ -18,6 +18,18 @@ const setItems = (items) => {
   localStorage.setItem('tasks', itemsJson);
 };
 
+const updateItem = (item, key, value) => {
+  item[key] = value;
+  setItems(items);
+  refreshList();
+};
+
+const deleteItem = (index) => {
+  items.splice(index, 1);
+  setItems(items);
+  refreshList();
+};
+
 const refreshList = () => {
   postContainer.innerHTML = '';
 
@@ -74,18 +86,6 @@ const addItem = () => {
   refreshList();
 
   addNewInput.value = ''; // Clear the input field after adding the item
-};
-
-const updateItem = (item, key, value) => {
-  item[key] = value;
-  setItems(items);
-  refreshList();
-};
-
-const deleteItem = (index) => {
-  items.splice(index, 1);
-  setItems(items);
-  refreshList();
 };
 
 items = getItems();
