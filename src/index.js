@@ -12,6 +12,10 @@ function setItems(items) {
   localStorage.setItem('tasks', itemsJson);
 }
 
+const postContainer = document.querySelector('.tasklist');
+const addButton = document.querySelector('.newtask-return');
+const items = getItems();
+
 function refreshList() {
   postContainer.innerHTML = '';
 
@@ -20,11 +24,6 @@ function refreshList() {
     postContainer.appendChild(itemElement);
   });
 }
-
-const postContainer = document.querySelector('.tasklist');
-const addButton = document.querySelector('.newtask-return');
-
-const items = getItems();
 
 function addItem() {
   const addNewInput = document.getElementById('addnew');
