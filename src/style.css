@@ -88,7 +88,7 @@ main {
 }
 
 .task-item-delete {
-    display:none;
+  display: none;
 }
 
 .task-item-more,
@@ -107,11 +107,11 @@ main {
 }
 
 .task-item:checked ~ .task-item-delete {
-    display: block;
+  display: block;
 }
 
 .task-item:checked ~ .task-item-more {
-    display: none;
+  display: none;
 }
 
 .task-item:checked ~ .task-item-text {
