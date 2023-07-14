@@ -120,7 +120,8 @@ main {
 }
 
 .task-item:checked ~ .task-item-delete,
-.task-item-text:focus ~ .task-item-delete {
+.task-item-text:focus ~ .task-item-delete,
+.task-item-delete:active {
   display: block;
 }
 

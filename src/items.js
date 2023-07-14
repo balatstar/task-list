@@ -13,7 +13,7 @@ export const deleteItem = (index) => {
 
   // Update the extraKey value for the remaining items
   items.forEach((item, idx) => {
-    item.extraKey = idx;
+    item.index = idx;
   });
 
   setItems(items);
