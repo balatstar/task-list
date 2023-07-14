@@ -1,5 +1,4 @@
 import { getItems, setItems } from './storage.js';
-import { refreshList } from './list.js';
 
 const clearCompletedItems = () => {
   let items = getItems();
@@ -13,7 +12,6 @@ const clearCompletedItems = () => {
   });
 
   setItems(updatedItems);
-  refreshList();
 };
 
 export default clearCompletedItems;

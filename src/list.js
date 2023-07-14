@@ -1,7 +1,7 @@
 import { getItems, setItems } from './storage.js';
 import createItemElement from './template.js';
 import { postContainer, addButton, addNewInput } from './elements.js';
-import clearCompletedItems from './deleteChecked.js'; // Import the function
+import { deleteItem } from './items.js';
 
 const refreshList = () => {
   const items = getItems();
@@ -27,6 +27,22 @@ const addItem = () => {
   addNewInput.value = ''; // Clear the input field after adding the item
   postContainer.dispatchEvent(new CustomEvent('itemAdded'));
 };
+
+const clearCompletedItems = () => {
+  let items = getItems();
+
+  // Filter out completed items
+  const updatedItems = items.filter(item => !item.completed);
+
+  // Update the index values for the remaining items
+  updatedItems.forEach((item, index) => {
+    item.index = index;
+  });
+
+  setItems(updatedItems);
+  refreshList();
+};
+
 
 const initializeList = () => {
   refreshList();
