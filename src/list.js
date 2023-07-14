@@ -1,7 +1,6 @@
 import { getItems, setItems } from './storage.js';
 import createItemElement from './template.js';
 import { postContainer, addButton, addNewInput } from './elements.js';
-import { deleteItem } from './items.js';
 
 const refreshList = () => {
   const items = getItems();
@@ -29,10 +28,10 @@ const addItem = () => {
 };
 
 const clearCompletedItems = () => {
-  let items = getItems();
+  const items = getItems();
 
   // Filter out completed items
-  const updatedItems = items.filter(item => !item.completed);
+  const updatedItems = items.filter((item) => !item.completed);
 
   // Update the index values for the remaining items
   updatedItems.forEach((item, index) => {
@@ -42,7 +41,6 @@ const clearCompletedItems = () => {
   setItems(updatedItems);
   refreshList();
 };
-
 
 const initializeList = () => {
   refreshList();

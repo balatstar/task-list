@@ -1,10 +1,10 @@
 import { getItems, setItems } from './storage.js';
 
 const clearCompletedItems = () => {
-  let items = getItems();
+  const items = getItems();
 
   // Filter out completed items
-  const updatedItems = items.filter(item => !item.completed);
+  const updatedItems = items.filter((item) => !item.completed);
 
   // Update the index values for the remaining items
   updatedItems.forEach((item, index) => {
