@@ -8,12 +8,13 @@ export const updateItem = (index, key, value) => {
 };
 
 export const deleteItem = (index) => {
-  const items = getItems();
+  let items = getItems();
   items.splice(index, 1);
 
-  // Update the extraKey value for the remaining items
-  items.forEach((item, idx) => {
+  // Update the index value for the remaining items
+  items = items.map((item, idx) => {
     item.index = idx;
+    return item;
   });
 
   setItems(items);

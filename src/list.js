@@ -1,6 +1,7 @@
 import { getItems, setItems } from './storage.js';
 import createItemElement from './template.js';
 import { postContainer, addButton, addNewInput } from './elements.js';
+import clearCompletedItems from './deleteChecked.js'; // Import the function
 
 const refreshList = () => {
   const items = getItems();
@@ -38,6 +39,9 @@ const initializeList = () => {
       addItem();
     }
   });
+
+  const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+  clearCompletedBtn.addEventListener('click', clearCompletedItems);
 
   postContainer.addEventListener('itemAdded', refreshList);
   postContainer.addEventListener('itemChanged', refreshList);
