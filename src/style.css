@@ -119,9 +119,9 @@ main {
   right: 10px;
 }
 
+.task-item-delete:active,
 .task-item:checked ~ .task-item-delete,
-.task-item-text:focus ~ .task-item-delete,
-.task-item-delete:active {
+.task-item-text:focus ~ .task-item-delete {
   display: block;
 }
 

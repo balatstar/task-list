@@ -3,7 +3,7 @@ import { getItems, setItems } from './storage.js';
 export const updateItem = (index, key, value) => {
   const items = getItems();
   items[index][key] = value;
-  items[index]['index'] = index; 
+  items[index].index = index;
   setItems(items);
 };
 
