@@ -82,6 +82,10 @@ main {
   margin: 0 5px;
 }
 
+.task-group:focus-within {
+  background-color: #ecebb8;
+}
+
 .task-item-text {
   width: 90%;
 }
@@ -90,6 +94,10 @@ main {
 .task-item-text::placeholder {
   color: #333;
   border: none;
+}
+
+.task-item-text:focus {
+  background-color: #ecebb8;
 }
 
 .task-item-delete {
@@ -111,16 +119,22 @@ main {
   right: 10px;
 }
 
-.task-item:checked ~ .task-item-delete {
+.task-item:checked ~ .task-item-delete,
+.task-item-text:focus ~ .task-item-delete {
   display: block;
 }
 
-.task-item:checked ~ .task-item-more {
+.task-item:checked ~ .task-item-more,
+.task-item-text:focus ~ .task-item-more {
   display: none;
 }
 
 .task-item:checked ~ .task-item-text {
   text-decoration: line-through;
+}
+
+.task-item:focus ~ .task-item-text {
+  background-color: #ecebb8;
 }
 
 .tasklist-btn {

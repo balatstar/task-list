@@ -19,6 +19,7 @@ const addItem = () => {
   items.push({
     description,
     completed: false,
+    index: items.length,
   });
   setItems(items);
 
