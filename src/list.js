@@ -27,6 +27,21 @@ const addItem = () => {
   postContainer.dispatchEvent(new CustomEvent('itemAdded'));
 };
 
+const clearCompletedItems = () => {
+  const items = getItems();
+
+  // Filter out completed items
+  const updatedItems = items.filter((item) => !item.completed);
+
+  // Update the index values for the remaining items
+  updatedItems.forEach((item, index) => {
+    item.index = index;
+  });
+
+  setItems(updatedItems);
+  refreshList();
+};
+
 const initializeList = () => {
   refreshList();
 
@@ -38,6 +53,9 @@ const initializeList = () => {
       addItem();
     }
   });
+
+  const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+  clearCompletedBtn.addEventListener('click', clearCompletedItems);
 
   postContainer.addEventListener('itemAdded', refreshList);
   postContainer.addEventListener('itemChanged', refreshList);
