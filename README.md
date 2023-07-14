@@ -25,7 +25,6 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
 # 📖 My Task List <a name="about-project"></a>
@@ -141,9 +140,7 @@ Warm kudos to Microverse for guidance and structure during my learning journey.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## ❓ FAQ (OPTIONAL) <a name="faq"></a>
-
-<!--
+<!-- ## ❓ FAQ (OPTIONAL) <a name="faq"></a>
 
 - **[Question_1]**
 
