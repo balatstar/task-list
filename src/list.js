@@ -1,5 +1,5 @@
 import { getItems, setItems } from './storage.js';
-import { createItemElement } from './template.js';
+import createItemElement from './template.js';
 import { postContainer, addButton, addNewInput } from './elements.js';
 
 const refreshList = () => {

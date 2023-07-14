@@ -4,7 +4,7 @@ import Delete from './delete.png';
 import { updateItem, deleteItem } from './items.js';
 import { postContainer } from './elements.js';
 
-export const createItemElement = (item, index) => {
+const createItemElement = (item, index) => {
   const itemElement = document.createElement('div');
   itemElement.classList.add('task-group');
   itemElement.innerHTML = `
@@ -50,3 +50,5 @@ export const createItemElement = (item, index) => {
 
   return itemElement;
 };
+
+export default createItemElement;
