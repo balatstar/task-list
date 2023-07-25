@@ -28,7 +28,7 @@
 
 # 📖 My Task List <a name="about-project"></a>
 
-**My Task List** is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete.
+**My Task List** is an interactive tool that helps to organize ongoing tasks for the day. It lists the things that need to be done and allows them to be marked as complete. The project was built using ES6 and Webpack.
 
 ## 🛠 Built With <a name="built-with"></a>
 
